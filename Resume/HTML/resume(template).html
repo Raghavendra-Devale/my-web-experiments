@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template</title>
+    <style>        
+        body {
+            font-family: 'Poppins', sans-serif;  
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .main {
+            display: flex;
+            padding: 20px;
+            margin: 10px;
+           gap: 10px;
+        }
+        .leftDiv {
+            width: 30%;
+            background-color: #aee1e1;  
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .leftDiv > div {
+            margin-bottom: 20px;
+        }
+        .rightDiv {
+            width: 70%;
+            background-color: #e7f0f7;  
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .rightDiv > div {
+            margin-bottom: 25px;
+        }
+        img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 15px;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 3px;
+        }
+
+        h4 {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        p, li {
+            font-size: 14px;
+            font-weight: 400;
+            margin: 4px 0;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-section, 
+        .profile-section, 
+        .skill-section, 
+        .language-section, 
+        .project-section, 
+        .education-section, 
+        .name-section {
+            margin-bottom: 20px;
+        }
+
+</style>
+    
+</head>
+<body>
+    <div class="main">
+        <div class="leftDiv">
+            <img src="img.jpeg" alt="image not found">
+
+            <div class="contact-section">
+                <h3>Contact Info </h3>
+                <p>Email : <a href="mailto:raghavendradevale07@gmail.com">raghavendradevale07@gmail.com</a></p>
+                <p>Phone : +91 7676-500-120</p>
+                <p>Location : Bengaluru, Karnataka, India</p>
+                <p><a href="https://www.linkedin.com/in/raghavendra-devale/">Linkedin</a></p>
+                <p><a href="https://github.com/raghavendra-devale">GitHub</a></p>
+            </div>
+            <div class="profile-section">
+                <h3>Professional experience</h3>
+                <p> Entry-level Java Backend Developer skilled in building RESTful services using 
+                    Spring Boot, Hibernate, and MySQL. Also familiar with HTML, CSS, and JavaScript. 
+                    Motivated to contribute to backend development while continuously growing toward 
+                    full-stack capabilities in a collaborative engineering environment.
+                   
+                </p>
+            </div>
+            
+            <div class="skill-section">
+                <h3>Skills </h3>
+                <p><strong>Backend:</strong> Java, Spring Boot, Spring MVC, Hibernate, REST APIs</p>
+                <p><strong>Database:</strong> MySQL, JDBC</p>
+                <p><strong>Tools:</strong> Git, Postman, IntelliJ IDEA, Maven</p>
+                <p><strong>Frontend:</strong> HTML, CSS, JavaScript</p>
+
+            </div>
+
+            <div class="language-section">
+                <h3>Languages </h3>
+                <p>Kannada (Native)</p>
+                <p>English (Professional)</p>
+                <p>Hindi (Conversational)</p>
+                <p>Telugu (Conversational)</p>                
+            </div>            
+
+        </div>
+        <div class="rightDiv">
+              
+                <div class="name-section">
+
+                   <h1>Raghavendra M Devale</h1>                
+                   <h2>Software Devlepment Engineer</h2>    
+                </div>
+                
+                <div class="project-section">
+                    <h3>Projects</h3>
+                    <h4>Stock Market Analysis Application</h4>
+                    <p><strong>Tech Stack:</strong> Java, Spring Boot, REST APIs, PostgreSQL</p>
+                    
+                    <ul>
+                        <li>Developed RESTful APIs to fetch and store live stock market data from AlphaVantage API.</li>
+                        <li>Implemented caching and efficient data persistence with PostgreSQL to reduce repeated API calls.</li>
+                        <li>Designed modular backend architecture emphasizing scalability and maintainability.</li>
+                    </ul>
+                    
+                    <h4>Prep-Smart - Placement Portal</h4>
+                    <p><strong>Tech Stack:</strong> Java, Spring Boot, MySQL</p>
+                    <ul>
+                        <li>Built APIs for user registration, authentication, and placement record management.</li>
+                        <li>Integrated MySQL for structured data storage with optimized query design.</li>
+                        <li>Followed Controller-Service-Repository layered architecture for clean code separation.</li>
+                    </ul>
+                </div>
+                
+                <div class="education-section">
+                    <h3>Education</h3>
+
+                    <h4>BE in Computer Science and Engineering</h4>
+                    <p>S J M Institute of Technology, Chitradurga, Karnataka</p>
+                    <p>May 2025</p>
+                    <p><strong>GPA:</strong> 8.66 / 10</p>
+
+                    <h4>Diploma in Computer Science and Engineering</h4>
+                    <p>DRR Government Polytechnic, Davangere, Karnataka</p>
+                    <p>Nov 2021</p>
+                    <p><strong>Percentage:</strong> 60%</p>
+                </div>
+        </div>
+
+    </div>
+</body>
+</html>
