@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Habit Tracker</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+  body {
+    background: #0d0f17;
+    color: #eeeeee;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .nav-pills .nav-link {
+    color: #a7a7ff !important;
+    font-weight: 600;
+    border-radius: 50px !important;
+  }
+  .nav-pills .nav-link.active {
+    background: linear-gradient(135deg, #6d28ff, #00eaff) !important;
+    color: black !important;
+    box-shadow: 0 0 14px #00eaff;
+  }
+  .nav {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(8px);
+  }
+
+  .stat-box {
+    background: #131827;
+    border: 1px solid #343a50;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 0 18px rgba(0,255,255,0.15);
+    text-align: center;
+  }
+
+  .habit-card {
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: #161b2e;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    border: 1px solid #2b3350;
+  }
+  .habit-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 18px #6d28ff;
+  }
+  .habit-card.done {
+    background: #0f2d1a;
+    border-color: #00ff9d;
+    box-shadow: 0 0 18px #00ff9d;
+  }
+
+  .toggle-btn, .delete-btn {
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .toggle-btn {
+    background: #6d28ff;
+    color: white;
+  }
+  .toggle-btn:hover { box-shadow: 0 0 12px #6d28ff; }
+
+  .delete-btn {
+    background: #ff3b5f;
+    color: white;
+  }
+  .delete-btn:hover { box-shadow: 0 0 12px #ff3b5f; }
+
+  #add-habit-btn {
+    background: linear-gradient(135deg, #6d28ff, #00eaff);
+    border: none;
+    font-weight: 600;
+    box-shadow: 0 0 12px #00eaff;
+  }
+</style>
+</head>
+
+<body class="p-3">
+
+<ul class="nav nav-pills nav-fill gap-2 p-1 rounded-5 shadow-sm">
+  <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#home-pane">Dashboard</button></li>
+  <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#habit-pane">Habits</button></li>
+  <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#addNew-pane">Add</button></li>
+</ul>
+
+<div class="tab-content pt-4">
+
+  <div class="tab-pane fade show active text-center" id="home-pane">
+    <h2 class="mt-2">⚡ Productivity Dashboard</h2>
+    <p class="text-muted">Keep your streak alive</p>
+
+    <div class="row justify-content-center mt-4 g-3">
+      <div class="col-5 col-md-3 stat-box">
+        <h3 id="total-habits">0</h3><p class="m-0">Total Habits</p>
+      </div>
+      <div class="col-5 col-md-3 stat-box">
+        <h3 id="completed-habits">0</h3><p class="m-0">Completed Today</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-pane fade" id="habit-pane">
+    <h2 class="mb-3">Your Habits</h2>
+    <div id="habits-container" class="d-grid gap-3"></div>
+  </div>
+
+  <div class="tab-pane fade" id="addNew-pane">
+    <h2 class="mb-3">Add New Habit</h2>
+    <input id="habit-input" type="text" class="form-control mb-3" placeholder="e.g., Code 1 hr, Read, Workout">
+    <button id="add-habit-btn" class="btn w-100">+ Add Habit</button>
+  </div>
+
+</div>
+
+<script>
+let habits = JSON.parse(localStorage.getItem('habits')) || [];
+
+function updateDashboard(){
+  document.getElementById('total-habits').innerText = habits.length;
+  document.getElementById('completed-habits').innerText = habits.filter(h => h.done).length;
+}
+
+function renderHabits(){
+  const box = document.getElementById('habits-container');
+  box.innerHTML = "";
+
+  habits.forEach((habit, index) => {
+    let card = document.createElement('div');
+    card.className = `habit-card ${habit.done ? "done" : ""}`;
+    card.innerHTML = `
+      <span>${habit.name}</span>
+      <div class="d-flex gap-2">
+        <button class="toggle-btn">${habit.done ? "✅" : "👎"}</button>
+        <button class="delete-btn">🗑️</button>
+      </div>
+    `;
+
+    card.querySelector('.toggle-btn').onclick = () => {
+      habit.done = !habit.done;
+      save();
+    };
+
+    card.querySelector('.delete-btn').onclick = () => {
+      habits.splice(index, 1);
+      save();
+    };
+
+    box.appendChild(card);
+  });
+
+  updateDashboard();
+}
+
+function save(){
+  localStorage.setItem('habits', JSON.stringify(habits));
+  renderHabits();
+}
+
+document.getElementById('add-habit-btn').onclick = () => {
+  let name = document.getElementById('habit-input').value.trim();
+  if(!name) return;
+  habits.push({ name, done: false });
+  document.getElementById('habit-input').value = "";
+  save();
+};
+
+renderHabits();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
